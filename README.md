@@ -49,6 +49,8 @@ Add some links and pictures to readme.
 
 Addressable LEDs are controlled by the en_speech_commands_recognition sample code.  Use the ESPHome light control to control color and brightness.  Still have an animation for wake word / listening detected.
 
+Cleanup compile warnings.
+
 ESP32-S3-Korvo-1 has a mono speaker.  Provide audio feedback for wake word and maybe media player support.
 
 Design a 3d printed case.
