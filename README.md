@@ -78,12 +78,12 @@ cd ~/esp
 git clone --recursive https://github.com/espressif/esp-skainet.git
 ```
 
-Update the integral esp-idf to version 4.4.3 (4.4 is standard but the ADC doesn't work)
+Update the integral esp-idf to version 4.4.2 (4.4 is standard but the ADC doesn't work, 4.4.3 Audio out doesn't work)
 
 ```
 cd ~/esp/esp-skainet/esp-idf/
 git fetch
-git checkout v4.4.3
+git checkout v4.4.2
 git submodule update --init --recursive
 ```
 
