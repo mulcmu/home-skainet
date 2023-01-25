@@ -1,0 +1,8 @@
+# Espressif ESP32 Partition Table
+# Name,  Type, SubType, Offset,  Size
+otadata,  data, ota,     ,        0x2000,
+phy_init, data, phy,     ,        0x1000,
+app0,     app,  ota_0,   ,      4096k,
+app1,     app,  ota_1,   ,      4096k,
+nvs,      data, nvs,     ,       0x6d000,
+model,  data, spiffs,         , 5168K,

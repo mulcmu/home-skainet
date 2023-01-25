@@ -1,0 +1,128 @@
+
+set(COMPONENT_SRCS
+    main.c
+    speech_commands_action.c
+	"esphome.cpp"
+	"esphome/components/adc/adc_sensor.cpp"
+	"esphome/components/api/api_connection.cpp"
+	"esphome/components/api/api_frame_helper.cpp"
+	"esphome/components/api/api_pb2.cpp"
+	"esphome/components/api/api_pb2_service.cpp"
+	"esphome/components/api/api_server.cpp"
+	"esphome/components/api/list_entities.cpp"
+	"esphome/components/api/proto.cpp"
+	"esphome/components/api/subscribe_state.cpp"
+	"esphome/components/api/user_services.cpp"
+	"esphome/components/binary_sensor/automation.cpp"
+	"esphome/components/binary_sensor/binary_sensor.cpp"
+	"esphome/components/binary_sensor/filter.cpp"
+	"esphome/components/button/button.cpp"
+	"esphome/components/esp32/core.cpp"
+	"esphome/components/esp32/gpio.cpp"
+	"esphome/components/esp32/preferences.cpp"
+	"esphome/components/light/addressable_light.cpp"
+	"esphome/components/light/automation.cpp"
+	"esphome/components/light/esp_color_correction.cpp"
+	"esphome/components/light/esp_hsv_color.cpp"
+	"esphome/components/light/esp_range_view.cpp"
+	"esphome/components/light/light_call.cpp"
+	"esphome/components/light/light_json_schema.cpp"
+	"esphome/components/light/light_output.cpp"
+	"esphome/components/light/light_state.cpp"
+	"esphome/components/logger/logger.cpp"
+	"esphome/components/md5/md5.cpp"
+	"esphome/components/mdns/mdns_component.cpp"
+	"esphome/components/mdns/mdns_esp32_arduino.cpp"
+	"esphome/components/mdns/mdns_esp8266.cpp"
+	"esphome/components/mdns/mdns_esp_idf.cpp"
+	"esphome/components/mdns/mdns_rp2040.cpp"
+	"esphome/components/network/util.cpp"
+	"esphome/components/number/automation.cpp"
+	"esphome/components/number/number.cpp"
+	"esphome/components/number/number_call.cpp"
+	"esphome/components/number/number_traits.cpp"
+	"esphome/components/ota/ota_backend_arduino_esp32.cpp"
+	"esphome/components/ota/ota_backend_arduino_esp8266.cpp"
+	"esphome/components/ota/ota_backend_arduino_rp2040.cpp"
+	"esphome/components/ota/ota_backend_esp_idf.cpp"
+	"esphome/components/ota/ota_component.cpp"
+	"esphome/components/restart/button/restart_button.cpp"
+	"esphome/components/sensor/automation.cpp"
+	"esphome/components/sensor/filter.cpp"
+	"esphome/components/sensor/sensor.cpp"
+	"esphome/components/socket/bsd_sockets_impl.cpp"
+	"esphome/components/socket/lwip_raw_tcp_impl.cpp"
+	"esphome/components/socket/socket.cpp"
+	"esphome/components/template/binary_sensor/template_binary_sensor.cpp"
+	"esphome/components/template/number/template_number.cpp"
+	"esphome/components/text_sensor/filter.cpp"
+	"esphome/components/text_sensor/text_sensor.cpp"
+	"esphome/components/wifi/wifi_component.cpp"
+	"esphome/components/wifi/wifi_component_esp32_arduino.cpp"
+	"esphome/components/wifi/wifi_component_esp8266.cpp"
+	"esphome/components/wifi/wifi_component_esp_idf.cpp"
+	"esphome/components/wifi/wifi_component_pico_w.cpp"
+	"esphome/components/wifi_info/wifi_info_text_sensor.cpp"
+	"esphome/components/wifi_signal/wifi_signal_sensor.cpp"
+	"esphome/core/application.cpp"
+	"esphome/core/color.cpp"
+	"esphome/core/component.cpp"
+	"esphome/core/component_iterator.cpp"
+	"esphome/core/controller.cpp"
+	"esphome/core/entity_base.cpp"
+	"esphome/core/helpers.cpp"
+	"esphome/core/log.cpp"
+	"esphome/core/scheduler.cpp"
+	"esphome/core/util.cpp"	
+    )
+
+set(INCLUDE_DIRS
+   "." 
+   "./esphome"
+   "./include"
+   "../"
+   )
+
+
+set(COMPONENT_ADD_INCLUDEDIRS 
+    include
+   "." 
+   "./esphome"
+   "./include"
+   "../"	
+    )
+
+set(COMPONENT_REQUIRES
+    esp-sr
+    led_strip
+    hardware_driver
+	esp_adc_cal
+	app_update
+	nvs_flash
+	mdns
+    newlib
+	bootloader 	
+	bootloader_support 	
+	efuse 	
+	esp32s3 	
+	esp_common 	
+	esp_hw_support 	
+	esp_rom 	
+	esp_system 	
+	esptool_py 	
+	freertos 	
+	hal 	
+	log 	
+	partition_table 	
+	soc 	
+	spi_flash 	
+	xtensa
+	asio
+
+
+    )
+
+register_component()
+
+
+
