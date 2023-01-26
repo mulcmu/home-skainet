@@ -6,42 +6,31 @@ This is a work in progress to implement local speech commands in home assistant.
 
 The current project is built using esp-idf 4.4.3 and implements basic functionality for home assistant speech command  processing.  Alexa is configured as the wake word and the 32 speech commands from the example are used for testing.  A binary sensor is activated in home assistant when the wake word is detected and the device is actively listening.  If any of the speech commands are detected with a probability over 50%, the command id number is sent to home assistant to perform the requested action.  After limited testing, the wake word detection works well, the speech command recognition is okay, and the device seems stable (no lockups or reboots).  
 
-Commands from the example are:
+Commands are hardcoded in the  sdkconfig file.  Currently set to:
 
-```
-0,tell me a joke  
-1,sing a song  
-2,play news channel  
-3,turn on my soundbox  
-4,turn off my soundbox  
-5,highest volume
-6,lowest volume
-7,increase the volume
-8,decrese the volume
-9,turn on the tv
-10,turn off the tv
-11,make me a tea
-12,make me a coffee
-13,turn on the light
-14,turn off the light
-15,change the color to red
-16,change the color to green
-17,turn on all the lights
-18,turn off all the lights
-19,turn on the air conditioner
-20,turn off the air conditioner
-21,set the temperature to sixteen degrees
-22,set the temperature to seventeen degrees
-23,set the temperature to eighteen degrees
-24,set the temperature to nineteen degrees
-25,set the temperature to twenty degrees
-26,set the temperature to twenty one degrees
-27,set the temperature to twenty two degrees
-28,set the temperature to twenty three degrees
-29,set the temperature to twenty four degrees
-30,set the temperature to twenty five degrees
-31,set the temperature to twenty six degrees
-```
+| Command ID | Phrase                      | International phonetic alphabet |
+| ---------- | --------------------------- | ------------------------------- |
+| 0          | zero                        | "ZgRb"                          |
+| 1          | one                         | "WcN"                           |
+| 2          | two                         | "To"                            |
+| 3          | three                       | "vRm"                           |
+| 4          | four                        | "FeR"                           |
+| 5          | five                        | "FiV"                           |
+| 6          | six                         | "SgKS"                          |
+| 7          | seven                       | "SfVcN"                         |
+| 8          | eight                       | "dT"                            |
+| 9          | nine                        | "NiN"                           |
+| 10         | turn off  upstairs lights   | "TkN eF  cPSTfRZ LiTS"          |
+| 11         | turn off  downstairs lights | "TkN eF  DtNSTfRZ LiTS"         |
+| 12         | turn off  outside lights    | "TkN eF  tTSiD LiTS"            |
+| 13         | turn off  basement lights   | "TkN eF  BdSMcNT LiTS"          |
+| 14         | turn off tv                 | "TkN eF  TmVm"                  |
+| 15         | turn off roku               | "TkN eF  RbKo"                  |
+| 16         | make me a  sandwich         | "MdK Mm  c SaNDWgp"             |
+| 17         | dock the  automower         | "DnK jc  eTcMtk"                |
+| 18         | resume  automower schedule  | "RmZoM  eTcMtk SKfqwL"          |
+| 19         | start netflix               | "STnRT  NfTFLgKS"               |
+| 20         | start pandora               | "STnRT  PaNDeRc"                |
 
 ## TODO:
 

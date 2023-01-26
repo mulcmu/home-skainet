@@ -25,7 +25,6 @@
 #include "model_path.h"
 #include "esp_process_sdkconfig.h"
 
-
 int detect_flag = 0;
 static esp_afe_sr_iface_t *afe_handle = NULL;
 static esp_afe_sr_data_t *afe_data = NULL;
@@ -190,15 +189,14 @@ void app_main()
     xTaskCreatePinnedToCore(&play_music, "play", 4 * 1024, NULL, 5, NULL, 1);
 #endif
 
-esphome_start();
+#if defined  CONFIG_ESP32_S3_KORVO_1_V4_0_BOARD 
+    //enable speaker amp
+    
+#endif    
 
-    // // You can call afe_handle->destroy to destroy AFE.
-    // task_flag = 0;
+    wake_up_action();
 
-    // printf("destroy\n");
-    // afe_handle->destroy(afe_data);
-    // afe_data = NULL;
-    // printf("successful\n");
+    esphome_start();
 
 }
 
