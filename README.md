@@ -4,7 +4,7 @@ This is a work in progress to implement local speech commands in home assistant.
 
 **Note: There is a plain ESP32-Korvo-1 with a regular ESP32 MCU not the ESP32S3.  The S3 is required for speech recognition!**
 
-The current project is built using esp-idf 4.4.3 and implements basic functionality for home assistant speech command  processing.  Alexa is configured as the wake word and the 32 speech commands from the example are used for testing.  A binary sensor is activated in home assistant when the wake word is detected and the device is actively listening.  If any of the speech commands are detected with a probability over 50%, the command id number is sent to home assistant to perform the requested action.  After limited testing, the wake word detection works well, the speech command recognition is okay, and the device seems stable (no lockups or reboots).  
+The current project is built using esp-idf 4.4.2 and implements basic functionality for home assistant speech command  processing.  *Alexa* is configured as the wake word and the 21 speech commands below are loaded for testing.  A binary sensor is activated in home assistant when the wake word is detected and the device is actively listening.  If any of the speech commands are detected with a probability over 50%, the command id number is sent to home assistant to perform the requested action.  After limited testing, the wake word detection works well, the speech command recognition is okay, and the device seems stable (no lockups or reboots).  
 
 Commands are hardcoded in the  sdkconfig file.  Currently set to:
 
@@ -36,11 +36,9 @@ Commands are hardcoded in the  sdkconfig file.  Currently set to:
 
 Add some links and pictures to readme.
 
-Addressable LEDs are controlled by the en_speech_commands_recognition sample code.  Use the ESPHome light control to control color and brightness.  Still have an animation for wake word / listening detected.
-
 Cleanup compile warnings.
 
-ESP32-S3-Korvo-1 has a mono speaker.  Provide audio feedback for wake word and maybe media player support.
+Media player support.
 
 Design a 3d printed case.
 
