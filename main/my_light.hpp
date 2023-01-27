@@ -44,10 +44,9 @@ class MyCustomLightOutput : public Component, public LightOutput {
   }
 
   void write_state(LightState *state) override {
-    // This will be called by the light to get a new state to be written.
-    float red, green, blue;
-    // use any of the provided current_values methods
+    state->current_values_as_brightness(&brightness);
     state->current_values_as_rgb(&red, &green, &blue);
+    
     // Write red, green and blue to HW
     
     for (int j = 0; j < 12; j += 1) 
@@ -55,6 +54,9 @@ class MyCustomLightOutput : public Component, public LightOutput {
       // Flush RGB values to LEDs
       ESP_ERROR_CHECK(strip->refresh(strip, 100));
     }
-    private:
-    led_strip_t *strip = NULL;
+  
+  protected:
+   led_strip_t *strip = NULL;
+   float red, green, blue, brightness;
+
 };

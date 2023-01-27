@@ -137,6 +137,8 @@ wifi_info::BSSIDWiFiInfo *wifi_info_bssidwifiinfo;
 wifi_info::MacAddressWifiInfo *wifi_info_macaddresswifiinfo;
 template_::TemplateNumber *voice_command;
 light::AddressableLightState *light_addressablelightstate;
+light::PulseLightEffect *light_pulselighteffect;
+light::PulseLightEffect *light_pulselighteffect_2;
 LambdaAction<> *lambdaaction;
 LambdaAction<> *lambdaaction_2;
 LambdaAction<> *lambdaaction_3;
@@ -206,9 +208,6 @@ extern "C" void esphome_setup() {
   //   libraries: []
   //   name_add_mac_suffix: false
   //   min_version: 2022.12.3
-
-
-
   App.pre_setup("korvo-s3", __DATE__ ", " __TIME__, false);
   // binary_sensor:
   // button:
@@ -652,6 +651,17 @@ extern "C" void esphome_setup() {
   //     return {light_out};
   //   lights:
   //   - name: Korvo WS2811
+  //     effects:
+  //     - pulse:
+  //         transition_length: 1s
+  //         update_interval: 1s
+  //         name: Pulse
+  //       type_id: light_pulselighteffect
+  //     - pulse:
+  //         name: WakeWord
+  //         transition_length: 400ms
+  //         update_interval: 500ms
+  //       type_id: light_pulselighteffect_2
   //     disabled_by_default: false
   //     restore_mode: RESTORE_DEFAULT_OFF
   //     gamma_correct: 2.8
@@ -676,6 +686,13 @@ extern "C" void esphome_setup() {
   light_addressablelightstate->set_flash_transition_length(0);
   light_addressablelightstate->set_gamma_correct(2.8f);
   light_addressablelightstate->add_effects({});
+  light_pulselighteffect = new light::PulseLightEffect("Pulse");
+  light_pulselighteffect->set_transition_length(1000);
+  light_pulselighteffect->set_update_interval(1000);
+  light_pulselighteffect_2 = new light::PulseLightEffect("WakeWord");
+  light_pulselighteffect_2->set_transition_length(400);
+  light_pulselighteffect_2->set_update_interval(500);
+  light_addressablelightstate->add_effects({light_pulselighteffect, light_pulselighteffect_2});
   // socket:
   //   implementation: bsd_sockets
   // network:
@@ -814,7 +831,42 @@ extern "C" void esphome_loop() {
 
 
 extern "C" void esphome_setwakeword(int ww) {
+   static float red, green, blue, brightness, cb;
    wake_word->publish_state(ww);
+   if(ww)  {
+        light_addressablelightstate->current_values_as_rgb(&red, &green, &blue);   //store current light settings
+        light_addressablelightstate->current_values_as_brightness(&brightness);   //store current light settings
+        ESP_LOGD("set_ww", "Stored R:%f G:%f B:%f X:%f" , red, green, blue, brightness);
+        auto call = light_addressablelightstate->turn_on();
+        call.set_color_mode(ColorMode::RGB);
+        //call.set_brightness(.75); 
+        //call.set_rgb(0.0, 0.25, 1.0);
+        call.set_effect("WakeWord");
+        call.perform();
+   }
+   else {
+        auto call = light_addressablelightstate->turn_on();
+        call.set_color_mode(ColorMode::RGB);
+        call.set_effect("none");
+        call.perform();
+        // auto call1 = light_addressablelightstate->turn_on();
+        // call1.set_transition_length(0); // in ms
+        // call1.set_color_mode(ColorMode::RGB);
+        // call1.set_brightness(brightness); 
+        // call1.set_color_brightness(1.0);
+        // call1.set_rgb(red, green, blue); // restore
+        // auto call2 = light_addressablelightstate->turn_on();
+        // call2.set_color_mode(ColorMode::RGB);
+        // call2.set_transition_length(0); // in ms
+        // call2.set_brightness(brightness);
+        // call2.set_rgb(red, green, blue); // restore 
+        // call2.perform();        
+        // auto call3 = light_addressablelightstate->turn_on();
+        // call3.set_transition_length(0); // in ms
+        // call3.set_color_mode(ColorMode::RGB);
+        // call3.set_rgb(red, green, blue); // restore
+        // call3.perform();                        
+   }
 }
 
 extern "C" void esphome_setvoicecommand(int cmd) {

@@ -24,6 +24,7 @@
 #include "speech_commands_action.h"
 #include "model_path.h"
 #include "esp_process_sdkconfig.h"
+#include "es8311.h"
 
 int detect_flag = 0;
 static esp_afe_sr_iface_t *afe_handle = NULL;
@@ -149,6 +150,7 @@ void app_main()
 {
     models = esp_srmodel_init("model"); // partition label defined in partitions.csv
     ESP_ERROR_CHECK(esp_board_init(AUDIO_HAL_08K_SAMPLES, 1, 16));
+    es8311_codec_set_voice_volume(70);    
     // ESP_ERROR_CHECK(esp_sdcard_init("/sdcard", 10));
 
 
@@ -193,10 +195,9 @@ void app_main()
     //enable speaker amp
     
 #endif    
+    esphome_start();
 
     wake_up_action();
-
-    esphome_start();
 
 }
 
