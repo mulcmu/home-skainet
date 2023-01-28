@@ -1,8 +1,10 @@
 # ESPHome merged with ESP-Skainet Speech Commands Recognition Example
 
-This is a work in progress to implement local speech commands in home assistant.  The Espressif ESP32-S3-Korvo-1 developer module includes all hardware necessary to detect a wake word, process preconfigured speech commands, and pass the received commands back to home assistant.  ESPHome was used to build a default configuration for the device to interface with addressable LEDs, push buttons, diagnostic information, and speech commands.   The ESPHome generated source code was merged with the ESP-Skainet en_speech_commands_recognition example code.
+This is a work in progress to implement local speech commands in home assistant.  The [Espressif ESP32-S3-Korvo-1](https://github.com/espressif/esp-skainet/blob/master/docs/en/hw-reference/esp32s3/user-guide-korvo-1.md) developer module includes all hardware necessary to detect a wake word, process preconfigured speech commands, and pass the received commands back to home assistant.  ESPHome was used to build a default configuration for the device to interface with addressable LEDs, push buttons, diagnostic information, and speech commands.   The ESPHome generated source code was merged with the [ESP-Skainet](https://github.com/espressif/esp-skainet/) en_speech_commands_recognition example code.
 
 **Note: There is a plain ESP32-Korvo-1 with a regular ESP32 MCU not the ESP32S3.  The S3 is required for speech recognition!**
+
+![](esphome.png)
 
 The current project is built using esp-idf 4.4.2 and implements basic functionality for home assistant speech command  processing.  *Alexa* is configured as the wake word and the 21 speech commands below are loaded for testing.  A binary sensor is activated in home assistant when the wake word is detected and the device is actively listening.  If any of the speech commands are detected with a probability over 50%, the command id number is sent to home assistant to perform the requested action.  After limited testing, the wake word detection works well, the speech command recognition is okay, and the device seems stable (no lockups or reboots).  
 
@@ -34,7 +36,7 @@ Commands are hardcoded in the  sdkconfig file.  Currently set to:
 
 ## TODO:
 
-Add some links and pictures to readme.
+Add a feedback sound when command is recognized and sent to HA.  Add a sound when wakeword activation expires. 
 
 Cleanup compile warnings.
 
