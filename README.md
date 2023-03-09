@@ -106,6 +106,8 @@ Edit secrets.h with your wifi credentials.
 
 Edit esphome.cpp line 256 with static IP address for your router.
 
+Edit the voice commands for your installation.  See https://github.com/espressif/esp-sr/tree/release/v1.0/tool
+
 Build and flash
 
 ```
